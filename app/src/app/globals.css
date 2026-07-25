@@ -1,0 +1,178 @@
+:root {
+  --bg: #0b0d12;
+  --panel: #141822;
+  --panel-2: #1b2130;
+  --border: #263042;
+  --text: #e6eaf2;
+  --muted: #8a97ad;
+  --accent: #6ea8fe;
+  --accent-2: #7ee0a8;
+  --err: #ff6b6b;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 70% -10%, #182033 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+.wrap { max-width: 900px; margin: 0 auto; padding: 48px 24px 80px; }
+
+h1 { font-size: 30px; margin: 0 0 6px; letter-spacing: -0.02em; }
+.sub { color: var(--muted); margin: 0 0 32px; font-size: 15px; line-height: 1.5; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.row { display: flex; gap: 10px; }
+input[type="text"] {
+  flex: 1;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 12px 14px;
+  font-size: 15px;
+  font-family: var(--mono);
+}
+input[type="text"]:focus { outline: none; border-color: var(--accent); }
+
+button {
+  background: var(--accent);
+  color: #06101f;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+.jobhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.repo { font-family: var(--mono); font-size: 14px; word-break: break-all; }
+.badge { font-size: 12px; padding: 3px 10px; border-radius: 999px; font-weight: 600; white-space: nowrap; }
+.badge.running { background: #23324a; color: var(--accent); }
+.badge.ready { background: #1c3a2b; color: var(--accent-2); }
+.badge.error { background: #3a1f1f; color: var(--err); }
+
+.stages { display: flex; gap: 6px; margin: 16px 0 6px; flex-wrap: wrap; }
+.stage {
+  font-size: 12px; padding: 5px 10px; border-radius: 8px;
+  background: var(--panel-2); color: var(--muted); border: 1px solid var(--border);
+}
+.stage.done { color: var(--accent-2); border-color: #245038; }
+.stage.active { color: var(--accent); border-color: #2c4670; background: #182238; }
+
+pre {
+  background: #0a0e16;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #cdd6e6;
+}
+code { font-family: var(--mono); }
+.err { color: var(--err); font-size: 14px; margin-top: 10px; }
+.hint { color: var(--muted); font-size: 13px; margin: 4px 0 0; }
+.tabs { display: flex; gap: 6px; margin-bottom: 10px; }
+.tab { font-size: 13px; padding: 6px 12px; border-radius: 8px; cursor: pointer; background: var(--panel-2); border: 1px solid var(--border); color: var(--muted); }
+.tab.on { color: var(--text); border-color: var(--accent); }
+label.small { color: var(--muted); font-size: 13px; }
+
+/* ---------------------------------------------------------------- compare */
+/* Side-by-side demo: base vs repo-adapted. The two columns are deliberately
+   symmetrical so the ONLY visual difference is the answer text itself. */
+.cmp { max-width: 1180px; margin: 0 auto; padding: 40px 24px 60px;
+       display: flex; flex-direction: column; min-height: 100vh; }
+.cmp-head { display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
+.cmp-head h1 { font-size: 27px; margin: 8px 0 0; letter-spacing: -.02em;
+               font-weight: 600; max-width: 22ch; line-height: 1.25; }
+.eyebrow { font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+           color: var(--muted); font-weight: 600; }
+.badge { font-size: 12px; font-weight: 650; padding: 5px 12px; border-radius: 999px;
+         white-space: nowrap; }
+.badge.ready { background: #14301f; color: var(--accent-2); }
+.badge.running { background: #1d2942; color: var(--accent); }
+.badge.error { background: #341b1b; color: var(--err); }
+
+.bar { display: flex; gap: 10px; }
+.bar input { flex: 1; background: var(--panel-2); border: 1px solid var(--border);
+             border-radius: 10px; color: var(--text); padding: 13px 15px;
+             font-size: 15px; font-family: var(--mono); }
+.bar input:focus { outline: none; border-color: var(--accent); }
+
+.recent { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.chip { background: var(--panel-2); border: 1px solid var(--border); color: var(--muted);
+        border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+        font-family: var(--mono); }
+.chip.on { border-color: var(--accent); color: var(--text); }
+
+.progress { margin-top: 26px; }
+.progress .stages { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.panes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px; }
+.pane-head { display: flex; align-items: center; gap: 9px; font-size: 13.5px;
+             font-weight: 650; padding: 10px 14px; border-radius: 10px 10px 0 0;
+             border: 1px solid var(--border); border-bottom: none; }
+.pane-head em { font-style: normal; color: var(--muted); font-weight: 400;
+                font-size: 12.5px; margin-left: auto; font-family: var(--mono); }
+.pane-head .dot { width: 8px; height: 8px; border-radius: 50%; }
+.pane-head.base { background: var(--panel); }
+.pane-head.base .dot { background: var(--muted); }
+.pane-head.adapted { background: var(--panel); }
+.pane-head.adapted .dot { background: var(--accent-2); }
+
+.scroll { flex: 1; overflow-y: auto; border: 1px solid var(--border);
+          border-radius: 0 0 10px 10px; background: var(--panel);
+          padding: 16px; min-height: 280px; max-height: 52vh; }
+.q { font-size: 14.5px; font-weight: 600; margin: 18px 0 12px;
+     padding-left: 11px; border-left: 3px solid var(--accent); }
+.q:first-child { margin-top: 0; }
+.answers { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ans { background: var(--panel-2); border: 1px solid var(--border); border-radius: 9px;
+       padding: 13px 15px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; }
+.ans.adapted { border-color: #245038; }
+.think { color: var(--muted); font-style: italic; }
+
+.empty { text-align: center; padding: 26px 10px; color: var(--muted); }
+.suggest { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+.suggest button { background: var(--panel-2); border: 1px solid var(--border);
+                  color: var(--text); border-radius: 8px; padding: 8px 13px;
+                  font-size: 13px; cursor: pointer; font-weight: 400; }
+.suggest button:hover:not(:disabled) { border-color: var(--accent); }
+
+.ask { display: flex; gap: 10px; margin-top: 14px; }
+.ask input { flex: 1; background: var(--panel-2); border: 1px solid var(--border);
+             border-radius: 10px; color: var(--text); padding: 13px 15px; font-size: 15px; }
+.ask input:focus { outline: none; border-color: var(--accent); }
+.foot { color: var(--muted); font-size: 12.5px; margin: 12px 0 0; text-align: center; }
+.chip { display: inline-flex; align-items: center; gap: 0; padding: 0; overflow: hidden; }
+.chip-main { background: none; border: none; color: inherit; font: inherit;
+             padding: 5px 6px 5px 12px; cursor: pointer; font-family: var(--mono); }
+.chip-main em { font-style: normal; color: var(--muted); }
+.chip-x { background: none; border: none; color: var(--muted); cursor: pointer;
+          font-size: 15px; line-height: 1; padding: 5px 10px 6px 4px; font-weight: 400; }
+.chip-x:hover { color: var(--err); }
+.clear-all { background: none; border: 1px solid var(--border); color: var(--muted);
+             border-radius: 999px; padding: 5px 12px; font-size: 12.5px; cursor: pointer;
+             font-weight: 400; }
+.clear-all:hover { border-color: var(--err); color: var(--err); }
+button.ghost { background: transparent; border: 1px solid var(--border);
+               color: var(--muted); font-weight: 400; }
+button.ghost:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }

@@ -1,0 +1,18 @@
+# Base model snapshots (10+ GB) — fetched via app/engine/fetch_base_model.py
+models/
+# Training runs and checkpoints — mirrored on Hugging Face, not GitHub
+runs/
+# Dataset payloads — parquet/jsonl corpora live on the HF mirror
+data/**/*.parquet
+data/**/*.jsonl
+# App
+app/node_modules/
+app/.next/
+app/.workspaces/
+app/next-env.d.ts
+app/tsconfig.tsbuildinfo
+__pycache__/
+*.pyc
+*.log
+.env.local
+.DS_Store

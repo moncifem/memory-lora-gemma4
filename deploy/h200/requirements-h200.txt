@@ -1,0 +1,23 @@
+# H100 / CUDA requirements.
+#
+# Deliberately does NOT pin torch: Brev images ship a torch build matched to the
+# instance's CUDA driver, and reinstalling from PyPI can replace it with one
+# that does not see the GPU. setup.sh only installs torch if `torch.cuda` is
+# unavailable.
+#
+# transformers must come from git: Gemma4ForConditionalGeneration (model_type
+# "gemma4") is not in a pinned PyPI release yet -- the model's own config.json
+# requires transformers_version >= 5.5.0.dev0.
+
+transformers @ git+https://github.com/huggingface/transformers.git
+accelerate>=1.14.0
+numpy>=2.0
+pyarrow>=18.0
+tqdm>=4.66
+sentencepiece>=0.2
+protobuf>=5.0
+tensorboard>=2.18
+psutil>=5.9
+peft>=0.19.0
+safetensors>=0.4
+huggingface_hub>=0.28

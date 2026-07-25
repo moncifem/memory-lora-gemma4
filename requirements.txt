@@ -1,0 +1,22 @@
+# Memory-LoRA for google/gemma-4-E2B -- local (MPS) requirements.
+#
+# transformers must be installed from the main/dev branch: as of writing,
+# Gemma4ForConditionalGeneration (model_type "gemma4") is not yet in a
+# pinned PyPI release (the model's own config.json requires
+# transformers_version >= 5.5.0.dev0).
+#
+#   pip install "git+https://github.com/huggingface/transformers.git"
+#
+# torch installs the MPS-enabled build automatically on macOS (no separate
+# index-url needed for Apple Silicon).
+
+torch==2.13.0
+transformers @ git+https://github.com/huggingface/transformers.git
+accelerate==1.14.0
+numpy==2.5.1
+pyarrow==25.0.0
+tqdm==4.69.0
+sentencepiece==0.2.2
+protobuf==7.35.1
+tensorboard==2.21.0
+openai==2.48.0
