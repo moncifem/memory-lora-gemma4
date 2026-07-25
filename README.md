@@ -12,8 +12,8 @@ repo URL ─► 6-view embedding (12288-d) ─► hypernetwork ─► LoRA adapt
 ```
 
 Measured on repositories **absent from the training corpus**, the generated
-adapter makes correct answers **~190× more likely** than the frozen model
-(−5.26 nats cross-entropy) and wins **9 of 9** benchmark family/repo
+adapter makes correct answers **~200× more likely** than the frozen model
+(−5.31 nats cross-entropy) and wins **9 of 9** benchmark family/repo
 combinations.
 
 ---
@@ -122,8 +122,14 @@ Cross-repo held-out loss versus the frozen base (lower is better):
 | run | best `cr_val` | vs base | verdict |
 |---|---|---|---|
 | before the fix | 2.606 | **+0.198** | worse than no adapter |
-| after the fix | 2.7168 | **−5.191** | ~180× likelier answers |
-| + RepoPeftBench corpus | 2.6907 | −5.237 | current best |
+| after the fix | 2.7168 | −5.191 | ~180× likelier answers |
+| **+ RepoPeftBench corpus** | **2.6811** | **−5.246** | **best** (`cr_test` −5.310) |
+
+The final run (`all_lora_best_cpt.pth`) merges Code2LoRA's RepoPeftBench
+assertion-completion data into the prose-QA corpus — 2,146 repositories and
+55,700 QA pairs, roughly double the previous corpus. Emitted-adapter cosine
+across repos is 0.32, versus 0.96 before the fix: the head produces genuinely
+repo-conditional weights.
 
 Absolute losses are not comparable across runs — the eval sets differ. The delta
 against the frozen model on identical data is.
